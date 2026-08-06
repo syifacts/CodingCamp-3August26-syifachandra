@@ -71,6 +71,6 @@ cd CodingCamp-3August26-syifachandra
 
 ## Assignment Info
 
-- **Course:** CodingCamp — Batch 3 August 2026
+- **Course:** RevoU Coding Camp: Software Engineering — Batch 3 August 2026
 - **Participant:** syifachandra
 - **Repository format:** `CodingCamp-[ddmmyy]-[name]`
