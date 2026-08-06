@@ -1,14 +1,29 @@
-# Requirements — Expense & Budget Visualizer
+# Requirements Document
 
-## Project Overview
+## Introduction
 
-A mobile-friendly web app that helps users track daily spending. It displays a total balance, a scrollable transaction history, and a pie chart of spending by category. All data is stored in the browser using LocalStorage — no backend required.
+This document defines the requirements for the **Expense & Budget Visualizer** — a mobile-friendly web app that helps users track daily spending. It displays a total balance, a scrollable transaction history, and a pie chart of spending by category. All data is stored in the browser using LocalStorage — no backend required.
 
 ---
 
-## Functional Requirements
+## Glossary
 
-### FR-1: Input Form
+| Term | Definition |
+|------|------------|
+| Transaction | A single spending entry consisting of an item name, amount, and category. |
+| Balance | The cumulative total of all transaction amounts. |
+| Category | A label grouping transactions by type (e.g., Food, Transport, Fun). |
+| LocalStorage | A browser-native key-value store used to persist data client-side without a server. |
+| Pie Chart | A circular chart that visualises spending distribution across categories. |
+| Spending Limit | An optional user-defined threshold; triggers a warning when the total balance exceeds it. |
+
+---
+
+## Requirements
+
+### Functional Requirements
+
+#### FR-1: Input Form
 
 | ID | Requirement |
 |----|-------------|
@@ -20,7 +35,7 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 | FR-1.6 | Each field must display an inline error message when validation fails. |
 | FR-1.7 | The form must reset after a successful submission. |
 
-### FR-2: Transaction List
+#### FR-2: Transaction List
 
 | ID | Requirement |
 |----|-------------|
@@ -29,7 +44,7 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 | FR-2.3 | Each list item must have a delete button that removes it from the list and storage. |
 | FR-2.4 | An empty-state message must be shown when no transactions exist. |
 
-### FR-3: Total Balance
+#### FR-3: Total Balance
 
 | ID | Requirement |
 |----|-------------|
@@ -37,7 +52,7 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 | FR-3.2 | The balance must update automatically whenever a transaction is added or deleted. |
 | FR-3.3 | Amounts must be formatted as Indonesian Rupiah (Rp). |
 
-### FR-4: Visual Chart
+#### FR-4: Visual Chart
 
 | ID | Requirement |
 |----|-------------|
@@ -48,9 +63,10 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 
 ---
 
-## Optional Challenges (3 selected)
+### Optional Challenges (3 selected)
 
-### OC-1: Custom Categories
+#### OC-1: Custom Categories
+
 | ID | Requirement |
 |----|-------------|
 | OC-1.1 | Users can add custom category names via a modal dialog. |
@@ -58,20 +74,23 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 | OC-1.3 | Custom categories appear in the category dropdown and the pie chart. |
 | OC-1.4 | Duplicate category names (case-insensitive) must be rejected. |
 
-### OC-2: Sort Transactions
+#### OC-2: Sort Transactions
+
 | ID | Requirement |
 |----|-------------|
 | OC-2.1 | Users can sort the transaction list by: Newest first, Oldest first, Amount ↓, Amount ↑, Category A–Z. |
 | OC-2.2 | The sort selection must update the displayed list immediately. |
 
-### OC-3: Dark / Light Mode Toggle
+#### OC-3: Dark / Light Mode Toggle
+
 | ID | Requirement |
 |----|-------------|
 | OC-3.1 | A toggle button in the header switches between dark and light themes. |
 | OC-3.2 | The selected theme persists in LocalStorage across page refreshes. |
 | OC-3.3 | All UI elements — including the chart — must adapt to the active theme. |
 
-### OC-4 (Bonus): Spending Limit Highlight
+#### OC-4 (Bonus): Spending Limit Highlight
+
 | ID | Requirement |
 |----|-------------|
 | OC-4.1 | Users can optionally set a spending limit (Rp). |
@@ -81,7 +100,7 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 
 ---
 
-## Technical Constraints
+### Technical Constraints
 
 | ID | Constraint |
 |----|-----------|
@@ -94,7 +113,7 @@ A mobile-friendly web app that helps users track daily spending. It displays a t
 
 ---
 
-## Non-Functional Requirements
+### Non-Functional Requirements
 
 | ID | Requirement |
 |----|-------------|
