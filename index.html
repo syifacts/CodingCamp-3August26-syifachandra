@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body class="light">
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <h1 class="app-title">💸 Budget Tracker</h1>
+    <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark/light mode" title="Toggle theme">🌙</button>
+  </header>
+
+  <!-- ===== MAIN CONTAINER ===== -->
+  <main class="container">
+
+    <!-- BALANCE CARD -->
+    <section class="balance-card" aria-label="Total balance">
+      <p class="balance-label">Total Balance</p>
+      <h2 class="balance-amount" id="balance">Rp 0</h2>
+    </section>
+
+    <!-- SPENDING LIMIT ALERT -->
+    <div class="limit-alert hidden" id="limit-alert" role="alert">
+      ⚠️ You have exceeded your spending limit!
+    </div>
+
+    <!-- INPUT FORM -->
+    <section class="card" aria-label="Add transaction">
+      <h3 class="section-title">Add Transaction</h3>
+      <form id="transaction-form" novalidate>
+        <div class="form-group">
+          <label for="item-name">Item Name</label>
+          <input
+            type="text"
+            id="item-name"
+            placeholder="e.g. Lunch, Bus fare…"
+            autocomplete="off"
+            maxlength="60"
+          />
+          <span class="field-error" id="err-name"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="amount">Amount (Rp)</label>
+          <input
+            type="number"
+            id="amount"
+            placeholder="e.g. 15000"
+            min="1"
+          />
+          <span class="field-error" id="err-amount"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category</label>
+          <div class="select-row">
+            <select id="category">
+              <option value="">-- Select category --</option>
+              <option value="Food">🍔 Food</option>
+              <option value="Transport">🚌 Transport</option>
+              <option value="Fun">🎉 Fun</option>
+            </select>
+            <button type="button" class="btn-secondary" id="add-category-btn" title="Add custom category">＋ Custom</button>
+          </div>
+          <span class="field-error" id="err-category"></span>
+        </div>
+
+        <!-- Spending limit field -->
+        <div class="form-group">
+          <label for="spending-limit">Spending Limit (Rp) <span class="optional">(optional)</span></label>
+          <input
+            type="number"
+            id="spending-limit"
+            placeholder="e.g. 100000"
+            min="0"
+          />
+        </div>
+
+        <button type="submit" class="btn-primary btn-full">Add Transaction</button>
+      </form>
+    </section>
+
+    <!-- TRANSACTIONS SECTION -->
+    <section class="card" aria-label="Transaction list">
+      <div class="section-header">
+        <h3 class="section-title">Transactions</h3>
+        <div class="sort-controls">
+          <label for="sort-select" class="sr-only">Sort by</label>
+          <select id="sort-select" title="Sort transactions">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="amount-desc">Amount ↓</option>
+            <option value="amount-asc">Amount ↑</option>
+            <option value="category">Category A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <ul class="transaction-list" id="transaction-list" aria-label="List of transactions">
+        <!-- items injected by JS -->
+      </ul>
+
+      <p class="empty-state hidden" id="empty-state">No transactions yet. Add one above!</p>
+    </section>
+
+    <!-- CHART SECTION -->
+    <section class="card chart-card" aria-label="Spending chart">
+      <h3 class="section-title">Spending by Category</h3>
+      <div class="chart-wrapper">
+        <canvas id="spending-chart" aria-label="Pie chart of spending by category"></canvas>
+      </div>
+      <p class="empty-state hidden" id="chart-empty">Add transactions to see the chart.</p>
+    </section>
+
+  </main>
+
+  <!-- CUSTOM CATEGORY MODAL -->
+  <div class="modal-overlay hidden" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <h4 id="modal-title">Add Custom Category</h4>
+      <div class="form-group">
+        <label for="custom-cat-input">Category name</label>
+        <input type="text" id="custom-cat-input" placeholder="e.g. Health, Savings…" maxlength="30" />
+        <span class="field-error" id="err-custom-cat"></span>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-primary" id="modal-confirm">Add</button>
+        <button class="btn-secondary" id="modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
